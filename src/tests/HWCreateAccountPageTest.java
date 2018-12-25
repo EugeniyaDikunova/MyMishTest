@@ -13,12 +13,13 @@ public class HWCreateAccountPageTest extends TestBase {
 
     @Test
     public void CreateNewAccount () {
+        String email1 = latinDigitString(8) + "@gmail.com";
         waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Create Account')]"),45);
         WebElement createAccount = driver.findElement(By.xpath("//span[contains(text(),'Create Account')]"));
         createAccount.click();
         WebElement mailField = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         mailField.click();
-        mailField.sendKeys("jenya99@gmail.com");
+        mailField.sendKeys(email1);
         WebElement passwordField = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
         passwordField.click();
         passwordField.sendKeys("555555");
@@ -50,13 +51,14 @@ public class HWCreateAccountPageTest extends TestBase {
 
     public void CreateNewAccountAndLogin (){
 
+        String email2 = latinDigitString(8) + "@gmail.com";
         waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Create Account')]"),45);
         WebElement createAccount = driver.findElement(By.xpath("//span[contains(text(),'Create Account')]"));
         createAccount.click();
 
         WebElement mailField = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         mailField.click();
-        mailField.sendKeys("jenya100@gmail.com");
+        mailField.sendKeys(email2);
 
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
@@ -92,7 +94,7 @@ public class HWCreateAccountPageTest extends TestBase {
 
         WebElement emailReg = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         emailReg.click();
-        emailReg.sendKeys("jenya999@gmail.com");
+        emailReg.sendKeys(email2);
         waitUntilElementIsLoaded(driver, By.xpath("//input[@formcontrolname='email']"),20);
 
         WebElement passReg =  driver.findElement(By.xpath("//input[@formcontrolname='password']"));
@@ -107,7 +109,6 @@ public class HWCreateAccountPageTest extends TestBase {
 
         WebElement buttonMenu = driver.findElement(By.xpath("//mat-icon[@class='but mat-icon material-icons']"));
         Assert.assertTrue(buttonMenu.getAttribute("mattooltip").equals("Menu"));
-
 
     }
 

@@ -14,12 +14,7 @@ public class LoginPageHelper extends PageBase {
     }
 
 
-    public void waitUntilPageLoginLoaded() {
 
-        waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Login')]"),45);
-
-
-    }
 
     public void PressLoginButton (){
 

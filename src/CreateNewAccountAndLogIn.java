@@ -18,16 +18,16 @@ public class CreateNewAccountAndLogIn {
 
         WebElement mailField = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         mailField.click();
-        mailField.sendKeys("jenka25@gmail.com");
+        mailField.sendKeys("mishUser13@gmail.com");
 
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
         passwordField.click();
-        passwordField.sendKeys("122557");
+        passwordField.sendKeys("example");
 
         WebElement repPasswordField = driver.findElement(By.xpath("//input[@formcontrolname='passwordRep']"));
         repPasswordField.click();
-        repPasswordField.sendKeys("122557");
+        repPasswordField.sendKeys("example");
 
         WebElement registrationButton = driver.findElement(By.xpath("//span[contains(text(),'Registration')]"));
         registrationButton.click();
@@ -54,12 +54,12 @@ public class CreateNewAccountAndLogIn {
 
         WebElement emailReg = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         emailReg.click();
-        emailReg.sendKeys("jenka25@gmail.com");
+        emailReg.sendKeys("mishUser13@gmail.com");
         Thread.sleep(2000);
 
         WebElement passReg =  driver.findElement(By.xpath("//input[@formcontrolname='password']"));
         passReg.click();
-        passReg.sendKeys("122557");
+        passReg.sendKeys("example");
 
         WebElement log_In = driver.findElement(By.xpath("//span[contains(text(),'Log in')]"));
         log_In.click();

@@ -18,16 +18,16 @@ public class CreateNewAccount {
 
         WebElement mailField = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
         mailField.click();
-        mailField.sendKeys("roman75@gmail.com");
+        mailField.sendKeys("mishUser12@gmail.com");
 
 
         WebElement passwordField = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
         passwordField.click();
-        passwordField.sendKeys("987654");
+        passwordField.sendKeys("example");
 
         WebElement repPasswordField = driver.findElement(By.xpath("//input[@formcontrolname='passwordRep']"));
         repPasswordField.click();
-        repPasswordField.sendKeys("987654");
+        repPasswordField.sendKeys("example");
 
         WebElement registrationButton = driver.findElement(By.xpath("//span[contains(text(),'Registration')]"));
         registrationButton.click();

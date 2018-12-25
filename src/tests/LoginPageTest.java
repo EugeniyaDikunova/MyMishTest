@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePageHelper;
 import pages.LoginPageHelper;
 
 import javax.xml.stream.events.Attribute;
@@ -19,12 +20,12 @@ import javax.xml.stream.events.Attribute;
 public class LoginPageTest extends TestBase
 
 {
-
+    HomePageHelper homePage;
     LoginPageHelper loginPage;
 
     @BeforeMethod
     public void initPage (){
-
+        homePage = PageFactory.initElements(driver,HomePageHelper.class);
         loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
     }
 
@@ -32,7 +33,7 @@ public class LoginPageTest extends TestBase
     @Test
     public void LoginPositive () {
 
-            loginPage.waitUntilPageLoginLoaded();
+           homePage.waitUntilPageLoad();
             loginPage.PressLoginButton();
 
            loginPage.waitUntilPgeCancelLoaded();
@@ -66,10 +67,10 @@ public class LoginPageTest extends TestBase
     @Test
     public void LoginNegative (){
 
-        loginPage.waitUntilPageLoginLoaded();
+        homePage.waitUntilPageLoad();
         loginPage.PressLoginButton();
 
-        loginPage.waitUntilPageLoginLoaded();
+
         loginPage.waitUntilPgeCancelLoaded();
         loginPage.emailNegativeFieldPressAndSendKeys();
         loginPage.passwordFieldPressAndSendKeys();
