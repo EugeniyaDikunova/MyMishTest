@@ -40,7 +40,7 @@ public class LoginPageTest extends TestBase
            homePage.waitUntilPageLoad();
           homePage.pressLoginButton();
 
-           loginPage.waitUntilPageCancelLoaded();
+           loginPage.waitUntilPageLog_InLoaded();
            loginPage.emailFieldPressAndSendKeys("jmenka@gmail.com");
            loginPage.passwordFieldPressAndSendKeys("221263");
            loginPage.waitUntilPageLog_InLoaded();
@@ -78,7 +78,7 @@ public class LoginPageTest extends TestBase
         homePage.pressLoginButton();
 
 
-        loginPage.waitUntilPageCancelLoaded();
+        loginPage.waitUntilPageLog_InLoaded();
         loginPage.emailFieldPressAndSendKeys("jmenkaa@gmail.com");
         loginPage.passwordFieldPressAndSendKeys("221263");
         loginPage.waitUntilPageLog_InLoaded();

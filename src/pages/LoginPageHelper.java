@@ -3,23 +3,38 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import javax.xml.stream.events.Attribute;
 
 public class LoginPageHelper extends PageBase {
 
+    @FindBy (xpath="//span[contains(text(),'Log in')]")
+    WebElement log_InButton;
+
+
+    @FindBy (xpath="//span[contains(text(),'Cancel')]")
+    WebElement cancelButton;
+
+    @FindBy (xpath="//input[@formcontrolname='email']")
+    WebElement email_field;
+
+
     public LoginPageHelper (WebDriver driver){
 
         super(driver);
     }
-
-
-    public void waitUntilPageCancelLoaded() {
-
-        waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Cancel')]"),20);
+    public void waitUntilPageLog_InLoaded() {
+        waitUntilElementIsLoaded (driver,log_InButton,20);
+        waitUntilElementIsLoaded(driver,cancelButton,20);
+        waitUntilElementIsLoaded(driver,email_field,20);
 
     }
 
+
+public void cancelPushButton (){
+        cancelButton.click();
+}
 
     public void emailFieldPressAndSendKeys(String value){
         WebElement email_field = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
@@ -34,11 +49,7 @@ public class LoginPageHelper extends PageBase {
         password_field.sendKeys(value);
     }
 
-    public void waitUntilPageLog_InLoaded() {
-        waitUntilElementIsLoaded (driver, By.xpath("//span[contains(text(),'Log in')]"),20);
-        waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Cancel')]"),20);
 
-    }
 
     public void log_InPressButton (){
 
