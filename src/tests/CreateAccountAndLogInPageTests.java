@@ -9,11 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.CreateAccountAndLoginHelper;
-import pages.EventsAuthPageHelper;
-import pages.HomePageHelper;
-import pages.LoginPageHelper;
+import pages.*;
 import tests.TestBase;
+
+import static org.testng.Assert.*;
 
 public class CreateAccountAndLogInPageTests extends TestBase {
 
@@ -21,6 +20,8 @@ public class CreateAccountAndLogInPageTests extends TestBase {
     CreateAccountAndLoginHelper createAccount;
     EventsAuthPageHelper eventsAuthPage;
     LoginPageHelper loginPage;
+    ProfilePageHelper profilePage;
+
 
     @BeforeMethod
     public void initPage() {
@@ -28,25 +29,27 @@ public class CreateAccountAndLogInPageTests extends TestBase {
         createAccount = PageFactory.initElements(driver,CreateAccountAndLoginHelper.class);
         eventsAuthPage = PageFactory.initElements(driver, EventsAuthPageHelper.class);
         loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
+        profilePage = PageFactory.initElements(driver,ProfilePageHelper.class);
     }
 
 
 
     @Test
-    public void CreateNewAccount () {
-        homePage.waitUntilPageLoad();
-        createAccount.createAccountPushButton();
+    public void createNewAccount () {
         String email = latinDigitString(8) + "@gmail.com";
+        homePage.waitUntilPageLoad();
+        homePage.createAccountPushButton();
+        profilePage.waitUntilPageLoad();
         createAccount.emailFieldPressAndSendKeys(email);
         createAccount.passportFieldPressAndSendKeys("555555");
         createAccount.repPassportFieldPressAndSendKeys("555555");
         createAccount.registrationButtonWaitAndClick();
+        profilePage.waitUntilPageLoad();
+        profilePage.waitUntilPageMenuLoadAndPush();
+        assertEquals("Menu",profilePage.getTooltipIconMenu());
+        profilePage.pressLogOut();
         homePage.waitUntilPageLoad();
-        Assert.assertEquals("Menu",eventsAuthPage.getTooltipIconMenu());
-        homePage.pressButtonMenu();
-        homePage.pressLogOut();
-        homePage.waitUntilPageLoad();
-        Assert.assertEquals("Go to Event list",homePage.getGoToEventButtonName());
+        assertEquals("Go to Event list",homePage.getGoToEventButtonName());
 
 
         //waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Create Account')]"),45);
@@ -77,32 +80,27 @@ public class CreateAccountAndLogInPageTests extends TestBase {
     }
     @Test
 
-    public void CreateNewAccountAndLogin (){
+    public void createNewAccountAndLogin (){
+        String email1 = latinDigitString(8) + "@gmail.com";
         homePage.waitUntilPageLoad();
-        createAccount.createAccountPushButton();
-        String email = latinDigitString(8) + "@gmail.com";
-        createAccount.emailFieldPressAndSendKeys(email);
+        homePage.createAccountPushButton();
+        profilePage.waitUntilPageLoad();
+        createAccount.emailFieldPressAndSendKeys(email1);
         createAccount.passportFieldPressAndSendKeys("555555");
         createAccount.repPassportFieldPressAndSendKeys("555555");
         createAccount.registrationButtonWaitAndClick();
-        loginPage.waitUntilPageLog_InLoaded();
-        loginPage.cancelPushButton();
-        homePage.waitUntilPageLoad();
-        Assert.assertEquals("Menu",eventsAuthPage.getTooltipIconMenu());
-        homePage.pressButtonMenu();
-        homePage.pressLogOut();
-
+        profilePage.waitUntilPageLoad();
+        profilePage.waitUntilPageMenuLoadAndPush();
+        profilePage.pressLogOut();
         homePage.waitUntilPageLoad();
         homePage.pressLoginButton();
-
         loginPage.waitUntilPageLog_InLoaded();
-        loginPage.emailFieldPressAndSendKeys(email);
+        loginPage.emailFieldPressAndSendKeys(email1);
         loginPage.passwordFieldPressAndSendKeys("555555");
         loginPage.waitUntilPageLog_InLoaded();
         loginPage.log_InPressButton();
-        eventsAuthPage.waitUntilPageMenuIconLoaded();
-
-        Assert.assertEquals("Menu",eventsAuthPage.getTooltipIconMenu());
+        profilePage.waitUntilPageMenuLoadAndPush();
+        assertEquals("Menu",profilePage.getTooltipIconMenu());
 
 
 

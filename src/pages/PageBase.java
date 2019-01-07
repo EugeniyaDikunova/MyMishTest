@@ -37,7 +37,10 @@ public  abstract class PageBase {
             e.printStackTrace();
         }
     }
-
-
+    public void setValueToField(WebElement element, String value) {// делаем метод для всех полей ввода,а не только для e-mail & password
+        element.click();
+        element.clear();
+        element.sendKeys(value);
+    }
 
 }

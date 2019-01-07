@@ -13,8 +13,8 @@ public class EventsAuthPageHelper extends PageBase {
     }
 
     public void waitUntilPageMenuIconLoaded(){
-        waitUntilElementIsLoaded (driver, By.xpath("//mat-icon[@class='but mat-icon material-icons']"),20);
-        waitUntilElementIsLoaded(driver, By.xpath("//h1[@class='gorisontal-center']"),40);
+        waitUntilElementIsLoaded (driver, By.xpath("//mat-icon[@class='but mat-icon material-icons']"),40);
+        waitUntilElementIsLoaded(driver, By.xpath("//span[contains(text(),'Filters')]"),40);
     }
 
     public String getTooltipIconMenu() {

@@ -19,15 +19,20 @@ public class LoginPageHelper extends PageBase {
     @FindBy (xpath="//input[@formcontrolname='email']")
     WebElement email_field;
 
+    @FindBy (xpath="//input[@formcontrolname='password']")
+    WebElement password_field;
+
+    @FindBy (xpath = "//div[@class='alert alert-danger ng-star-inserted']")
+    WebElement alertText;
 
     public LoginPageHelper (WebDriver driver){
 
         super(driver);
     }
     public void waitUntilPageLog_InLoaded() {
-        waitUntilElementIsLoaded (driver,log_InButton,20);
+       // waitUntilElementIsLoaded (driver,log_InButton,20);
         waitUntilElementIsLoaded(driver,cancelButton,20);
-        waitUntilElementIsLoaded(driver,email_field,20);
+        //waitUntilElementIsLoaded(driver,email_field,20);
 
     }
 
@@ -37,30 +42,33 @@ public void cancelPushButton (){
 }
 
     public void emailFieldPressAndSendKeys(String value){
-        WebElement email_field = driver.findElement(By.xpath("//input[@formcontrolname='email']"));
-        email_field.click();
-        email_field.sendKeys(value );
+        setValueToField(email_field,value);
+        //email_field.click();    создали один метод для всех полей ввода в page base
+        //email_field.clear();
+        //email_field.sendKeys(value);
+
     }
 
-    public void passwordFieldPressAndSendKeys(String value){
 
-        WebElement password_field = driver.findElement(By.xpath("//input[@formcontrolname='password']"));
-        password_field.click();
-        password_field.sendKeys(value);
+
+    public void passwordFieldPressAndSendKeys(String value){
+        setValueToField(password_field,value);
+        //password_field.click();
+        //password_field.clear();
+        //password_field.sendKeys(value);
     }
 
 
 
     public void log_InPressButton (){
-
-        WebElement login_button=driver.findElement(By.xpath("//span[contains(text(),'Log in')]"));
-        login_button.click();
+       waitUntilElementIsLoaded(driver,log_InButton,20);
+        log_InButton.click();
     }
 
 
     public String wrongAuthorization(){
-        waitUntilElementIsLoaded (driver, By.xpath("//div[@class='alert alert-danger ng-star-inserted']"),20);
-        WebElement alertText = driver.findElement(By.xpath("//div[@class='alert alert-danger ng-star-inserted']"));
+        waitUntilElementIsLoaded (driver, alertText,20);
+        //WebElement alertText = driver.findElement(By.xpath("//div[@class='alert alert-danger ng-star-inserted']"));
         return  alertText.getText();
     }
 }

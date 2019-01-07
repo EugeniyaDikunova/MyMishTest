@@ -27,7 +27,7 @@ public class HomePageHelper extends PageBase  {
     WebElement createAcoountButton;
 
 
-    @FindBy (xpath = "//mat-icon[@class='but mat-icon material-icons']")
+    @FindBy (xpath = "//mat-icon[@mattooltip='Menu']")
     WebElement iconMenu;
 
     @FindBy (xpath = "//span[@class='marginLeft']")
@@ -43,17 +43,22 @@ public class HomePageHelper extends PageBase  {
 
         waitUntilElementIsLoaded(driver,loginButton,45);
         waitUntilElementIsLoaded(driver,createAcoountButton,20);
-        waitUntilElementIsLoaded(driver,iconMenu,20);
-        waitUntilElementIsLoaded(driver,goToEventsButton,20);
-
+        //waitUntilElementIsLoaded(driver,iconMenu,20);
+        //waitUntilElementIsLoaded(driver,goToEventsButton,20);
 
     }
+
 
     public void pressLoginButton (){
 
         //WebElement loginButton = driver.findElement(By.xpath("//span[contains(text(),'Login')]"));
         loginButton.click();
     }
+
+    public void createAccountPushButton () {
+        createAcoountButton.click();
+    }
+
 
 
     public String getGoToEventButtonName() {
