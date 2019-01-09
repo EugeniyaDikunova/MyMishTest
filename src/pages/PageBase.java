@@ -43,4 +43,20 @@ public  abstract class PageBase {
         element.sendKeys(value);
     }
 
+    public static String latinDigitString(int length){
+        String str = "";
+        char ch;
+        int number;
+        Random gen = new Random();
+        int i = 0;
+        do {
+            number = '0' + gen.nextInt('z' - '0' +1);
+            if ((number <= '9') || (number >= 'A' && number <= 'Z') || (number >= 'a'))
+            {
+                str = str + (char)number;
+            }
+        }while(str.length()<length);
+        return str;
+    }
+
 }

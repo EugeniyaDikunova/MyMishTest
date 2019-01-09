@@ -39,7 +39,7 @@ public class TestBase {
     }
 
 
-    public static String latinDigitString(int length){
+   /* public static String latinDigitString(int length){
         String str = "";
         char ch;
         int number;
@@ -53,7 +53,7 @@ public class TestBase {
             }
         }while(str.length()<length);
         return str;
-    }
+    }*/
 
    /* public String randMail() {
         Random rand = new Random();

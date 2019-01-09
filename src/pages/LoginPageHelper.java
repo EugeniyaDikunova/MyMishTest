@@ -36,7 +36,6 @@ public class LoginPageHelper extends PageBase {
 
     }
 
-
 public void cancelPushButton (){
         cancelButton.click();
 }
@@ -48,24 +47,16 @@ public void cancelPushButton (){
         //email_field.sendKeys(value);
 
     }
-
-
-
     public void passwordFieldPressAndSendKeys(String value){
         setValueToField(password_field,value);
         //password_field.click();
         //password_field.clear();
         //password_field.sendKeys(value);
     }
-
-
-
     public void log_InPressButton (){
        waitUntilElementIsLoaded(driver,log_InButton,20);
         log_InButton.click();
     }
-
-
     public String wrongAuthorization(){
         waitUntilElementIsLoaded (driver, alertText,20);
         //WebElement alertText = driver.findElement(By.xpath("//div[@class='alert alert-danger ng-star-inserted']"));

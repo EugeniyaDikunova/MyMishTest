@@ -1,12 +1,14 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreateAccountAndLoginHelper  extends PageBase {
 
+
+    @FindBy (xpath = "//span[contains(text(),'Cancel')]")
+    WebElement cancelButton;
 
     @FindBy (xpath="//input[@formcontrolname='email']")
     WebElement email_field;
@@ -25,6 +27,15 @@ public class CreateAccountAndLoginHelper  extends PageBase {
         super(driver);
     }
 
+    public void waitUntilPageLoad() {
+        waitUntilElementIsLoaded(driver,cancelButton, 40);
+    }
+
+    public String enterValueToFieldEmailRandom() {
+        String email = latinDigitString(10)+"@gmail.com";
+        setValueToField(email_field,email);
+        return email;
+    }
 
     public void emailFieldPressAndSendKeys (String value){
            setValueToField(email_field,value);

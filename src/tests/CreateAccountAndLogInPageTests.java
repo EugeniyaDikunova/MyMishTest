@@ -21,6 +21,7 @@ public class CreateAccountAndLogInPageTests extends TestBase {
     EventsAuthPageHelper eventsAuthPage;
     LoginPageHelper loginPage;
     ProfilePageHelper profilePage;
+    MenuPageHelper menuPage;
 
 
     @BeforeMethod
@@ -30,28 +31,36 @@ public class CreateAccountAndLogInPageTests extends TestBase {
         eventsAuthPage = PageFactory.initElements(driver, EventsAuthPageHelper.class);
         loginPage = PageFactory.initElements(driver,LoginPageHelper.class);
         profilePage = PageFactory.initElements(driver,ProfilePageHelper.class);
+        menuPage = PageFactory
+                .initElements(driver, MenuPageHelper.class);
+        homePage.waitUntilPageLoad();
     }
 
 
 
     @Test
     public void createNewAccount () {
-        String email = latinDigitString(8) + "@gmail.com";
-        homePage.waitUntilPageLoad();
-        homePage.createAccountPushButton();
-        profilePage.waitUntilPageLoad();
-        createAccount.emailFieldPressAndSendKeys(email);
+
+        homePage.pressCreateAccountButton();
+        createAccount.waitUntilPageLoad();
+
+        createAccount.enterValueToFieldEmailRandom();
         createAccount.passportFieldPressAndSendKeys("555555");
         createAccount.repPassportFieldPressAndSendKeys("555555");
         createAccount.registrationButtonWaitAndClick();
         profilePage.waitUntilPageLoad();
-        profilePage.waitUntilPageMenuLoadAndPush();
-        assertEquals("Menu",profilePage.getTooltipIconMenu());
-        profilePage.pressLogOut();
+
+        Assert.assertEquals(profilePage.getHeader(),"Registration");
+
+
+        profilePage.menuButtonClick();
+
+        menuPage.waitUntilPageLoad();
+        menuPage.pressLogOutButton();
         homePage.waitUntilPageLoad();
-        assertEquals("Go to Event list",homePage.getGoToEventButtonName());
+        Assert.assertEquals(homePage.getHeader(),"Shabbat in the family circle");
 
-
+         //String email = latinDigitString(8) + "@gmail.com";
         //waitUntilElementIsLoaded(driver,By.xpath("//span[contains(text(),'Create Account')]"),45);
         //WebElement createAccount = driver.findElement(By.xpath("//span[contains(text(),'Create Account')]"));
         //createAccount.click();
@@ -81,27 +90,34 @@ public class CreateAccountAndLogInPageTests extends TestBase {
     @Test
 
     public void createNewAccountAndLogin (){
-        String email1 = latinDigitString(8) + "@gmail.com";
-        homePage.waitUntilPageLoad();
-        homePage.createAccountPushButton();
-        profilePage.waitUntilPageLoad();
-        createAccount.emailFieldPressAndSendKeys(email1);
+
+
+        homePage.pressCreateAccountButton();
+        createAccount.waitUntilPageLoad();
+
+
+        String email = createAccount.enterValueToFieldEmailRandom();
         createAccount.passportFieldPressAndSendKeys("555555");
         createAccount.repPassportFieldPressAndSendKeys("555555");
         createAccount.registrationButtonWaitAndClick();
         profilePage.waitUntilPageLoad();
-        profilePage.waitUntilPageMenuLoadAndPush();
-        profilePage.pressLogOut();
+        Assert.assertEquals(profilePage.getHeader(),"Registration");
+
+        profilePage.menuButtonClick();
+        menuPage.waitUntilPageLoad();
+        menuPage.pressLogOutButton();
+        homePage.waitUntilPageLoad();
+        Assert.assertEquals(homePage.getHeader(),"Shabbat in the family circle");// cравниваем заголовки на странице
+
         homePage.waitUntilPageLoad();
         homePage.pressLoginButton();
         loginPage.waitUntilPageLog_InLoaded();
-        loginPage.emailFieldPressAndSendKeys(email1);
+        loginPage.emailFieldPressAndSendKeys(email);
         loginPage.passwordFieldPressAndSendKeys("555555");
         loginPage.waitUntilPageLog_InLoaded();
         loginPage.log_InPressButton();
-        profilePage.waitUntilPageMenuLoadAndPush();
-        assertEquals("Menu",profilePage.getTooltipIconMenu());
-
+        profilePage.waitUntilPageLoad();
+        Assert.assertEquals(profilePage.getHeader(),"Registration");
 
 
 

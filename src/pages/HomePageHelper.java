@@ -13,25 +13,19 @@ import java.util.List;
 
 public class HomePageHelper extends PageBase  {
 
-    @FindBy(className = "mat-stroked-button")
-    WebElement goToEventsButton;
-
     @FindBy(xpath = "//span[contains(text(),'Login')]")
     WebElement loginButton;
 
-    @FindBy(css = ".mat-button-wrapper .mat-button-wrapper")
-    List<WebElement> topLinksList;
+    @FindBy(xpath = "//span[contains(text(),'Create Account')]")
+    WebElement createAccountButton;
+
+    @FindBy(xpath = "//span[contains(text(),'Go to Event list')]")
+    WebElement goToEventButton;
+
+    @FindBy (xpath = "//h1[@class='mat-display-3']")
+    WebElement header;
 
 
-    @FindBy (xpath ="//span[contains(text(),'Create Account')]")
-    WebElement createAcoountButton;
-
-
-    @FindBy (xpath = "//mat-icon[@mattooltip='Menu']")
-    WebElement iconMenu;
-
-    @FindBy (xpath = "//span[@class='marginLeft']")
-    WebElement logOutButton;
 
     public HomePageHelper (WebDriver driver){
 
@@ -40,49 +34,38 @@ public class HomePageHelper extends PageBase  {
     }
 
     public void waitUntilPageLoad() {
-
         waitUntilElementIsLoaded(driver,loginButton,45);
-        waitUntilElementIsLoaded(driver,createAcoountButton,20);
-        //waitUntilElementIsLoaded(driver,iconMenu,20);
-        //waitUntilElementIsLoaded(driver,goToEventsButton,20);
+        waitUntilElementIsLoaded(driver,createAccountButton,40);
+        waitUntilElementIsLoaded(driver, goToEventButton,40);
 
     }
-
-
-    public void pressLoginButton (){
-
-        //WebElement loginButton = driver.findElement(By.xpath("//span[contains(text(),'Login')]"));
-        loginButton.click();
-    }
-
-    public void createAccountPushButton () {
-        createAcoountButton.click();
-    }
-
-
 
     public String getGoToEventButtonName() {
         /*WebElement goToEventsButton = driver.findElement(
                 By.className("mat-stroked-button"));*/
-        return goToEventsButton.getText();
+        return goToEventButton.getText();
     }
-
 
     public void pressGoToEventButton() {
-
-       // WebElement goToEventsButton = driver.findElement(By.className("mat-stroked-button"));
-        goToEventsButton.click();
+        /*WebElement goToEventsButton = driver.findElement(
+                By.className("mat-stroked-button"));*/
+        goToEventButton.click();
     }
 
-    public void pressButtonMenu (){
-
-        //WebElement iconMenu = driver.findElement(By.xpath("//mat-icon[@class='but mat-icon material-icons']"));
-        iconMenu.click();
+    public void pressLoginButton() {
+        /*WebElement login = driver.findElement(By
+                .xpath("//span[contains(text(),'Login')]"));*/
+        loginButton.click();
     }
 
-    public void pressLogOut (){
-        //WebElement logOutMenu = driver.findElement(By.xpath("//span[@class='marginLeft']"));
-        logOutButton.click();
+    public void pressCreateAccountButton() {
+        createAccountButton.click();
     }
 
+
+    public String getHeader() {
+        return header.getText();
+    }
 }
+
+
